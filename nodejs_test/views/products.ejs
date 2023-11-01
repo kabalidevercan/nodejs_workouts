@@ -3,28 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Urunler</h1>
-   <p>
-    <%= products[0].name %>
-    <%= products[1].name %>
-   </p>
-   <ul>
-    <% products.forEach(product => { %>
-
-        <% if (product.price >= 40000 && product.isActive) { %>
-            <li>
-                <a href="/products/<%= product.id %>">
-                    <%= product.name%> - <%= product.price %>
-                </a> 
-                
-            </li>
-        <% } %>
-
-        
-    <% }) %>
-   </ul>
+    <div class="container mt-3">
+        <h1>URUNLER URUNLER</h1>
+        <div class="row">
+            <div class="col-12">
+               <% products.forEach(product => { %>
+                <%- include('partials/proproduct', {
+                    product:product
+                }) %>
+               <% }) %>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

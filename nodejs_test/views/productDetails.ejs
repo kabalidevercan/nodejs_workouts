@@ -7,16 +7,29 @@
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
     <title>Document</title>
 </head>
-<body class="bg-warning">
-    <h1><%= product.name %></h1>
-    <img src="/images/<%= product.imageUrl %>" alt="" width="500">
-    <p>Fiyat : <%= product.price %></p>
-    <p>
-        <% if (product.isActive) { %>
-                <span>Urun satista</span>
-        <% } else { %>
-                 <span>Urun satista degil</span>
-        <% }  %>
-    </p>
+<body >
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+               
+                <div class="card mb-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="/images/<%= product.imageUrl %>" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= product.name %></h5>
+                                <p class="card-text"><%= product.price %></p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum soluta minus, enim maiores assumenda impedit quidem provident nulla cumque recusandae sed molestias non vel!</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta tenetur ad quam praesentium ex nisi veniam cum, blanditiis ipsa dolor eum rem distinctio! Fugit cumque neque, eveniet ea ratione odio cupiditate assumenda sunt nam provident.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
 </body>
 </html>
