@@ -4,9 +4,8 @@ const path = require('path')
 const userRoots = require('./routes/user')
 const adminRoots= require('./routes/admin')
 
+
 app.set('view engine','ejs')
-
-
 
 app.use('/libs',express.static(path.join(__dirname,'node_modules')))
 app.use('/static',express.static(path.join(__dirname,'public')))

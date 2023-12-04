@@ -9,7 +9,7 @@ router.use('/edit', (req,res)=>{
 router.use('/list',(req,res)=> {
     res.render("admin/blog-list")
 })
-router.use('',(req,res)=>{
+router.use('/',(req,res)=>{
     res.render('admin/blog-create')
 })
 

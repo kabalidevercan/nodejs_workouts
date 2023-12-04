@@ -1,36 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const path = require('path')
+const db = require('../data/db')
 
 
 const data = {
     title : 'Populer Kurslar',
-    categories : [
-        'Web Gelistirme',
-        'Programlama',
-        'Mobil Uygulamalar',
-        'Veri Analizi'
-    ],
-    blogList: [
-        {
-            blogId : 1,
-            baslik : 'Komple Fizik muhendisi yetistirme 6 ayda',
-            aciklama : 'Sifirdan ileri duzey fizik muhendisi yetistirmeyi sadece 6 ayda yapiyoruz inanman agri dagina baksin',
-            resim : '1.jpg'
-        },
-        {
-            blogId : 2,
-            baslik : 'Komple Bilgisayar muhendisi yetistirme 6 ayda',
-            aciklama : 'Sifirdan ileri duzey Bilgisayar muhendisi yetistirmeyi sadece 6 ayda yapiyoruz inanman agri dagina baksin',
-            resim : '2.jpg'
-        },
-        {
-            blogId : 3,
-            baslik : 'Komple Elektrik muhendisi yetistirme 6 ayda',
-            aciklama : 'Sifirdan ileri duzey Elektrik muhendisi yetistirmeyi sadece 6 ayda yapiyoruz inanman agri dagina baksin',
-            resim : '3.jpg'
-        },
-    ],
 }  
 
 router.use('/blog/:blogId',(req,res)=> {
@@ -39,12 +14,47 @@ router.use('/blog/:blogId',(req,res)=> {
 
 
 router.use('/blog',(req,res)=> {
-        res.render('users/blog',data)
+        db.execute('Select * from blog')
+        .then(result => {
+            db.execute('Select * from category')
+            .then(sonuc => {
+                res.render('users/blog',{
+                    title: data.title,
+                    categories: sonuc[0],
+                    blogList: result[0]
+                })
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            
+        })
+        .catch(err => {
+            console.log(err)
+        })
 })
 
 
-router.use('/',(req,res)=>{
-    res.render('users/index',data)
+router.use('/anasayfa',(req,res)=>{
+    db.execute('Select * from blog')
+    .then(result => {
+        db.execute('Select * from category')
+        .then(sonuc => {
+            res.render('users/index', {
+                title: data.title,
+                categories: sonuc[0],
+                blogList : result[0]
+            }) 
+        })
+        .catch(error=> {
+            console.log(error)
+        })
+        
+    })
+    .catch(err => {
+        console.log(err)
+    })
+    
 })
 
 
