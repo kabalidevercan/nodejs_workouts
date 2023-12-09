@@ -10,10 +10,13 @@
    <div class="container mt-3">
     <div class="row">
         <div class="col-md-3">
-            <%- include('./partials-user/category-menu',categories) %>
+            <%- include('./partials-user/category-menu',{categories,selectedCategory}) %>
         </div>
         <div class="col-md-9">
             <h1 class="mb-3">BLOG == > <%= title %></h1>
+            <% if (blogList.length == 0) { %>
+                <%- include('./partials-user/no-blog') %>
+            <% } %>
                 <% blogList.forEach(blog => { %>
                     <%- include('./partials-user/blog-card',blog) %>
                     
